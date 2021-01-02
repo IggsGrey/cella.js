@@ -1,0 +1,112 @@
+import exceptions from './exceptions';
+
+// I'm going through mdn's docs on indexedDB and I'm having a hard time following...
+
+// This is what our customer data looks like.
+const value = JSON.stringify([
+	{ ssn: '444-44-4444', name: 'Bill', age: 35, email: 'bill@company.com' },
+	{ ssn: '555-55-5555', name: 'Donna', age: 32, email: 'donna@home.org' }
+]);
+
+const key = new Date().getMilliseconds;
+
+const theNameParam = 'newName';
+
+
+const customIndexedDB: { store: (key: string, value: string) => void, get: (key: string) => string, eject: (key: string) => void } = {
+	store: () => {
+		return operate('store');
+		// return undefined;
+	},
+	get: () => {
+		return operate('get');
+		// return new String().toString();
+	},
+	eject: () => {
+		return operate('eject');
+		// return undefined;
+	}
+};
+
+const operators = {
+	store: (transaction, key: string, value: string) => {
+		transaction.objectStore('NewDatabase').add({ key, value });
+		console.log('i stored');
+	},
+	get: (transaction, key: string) => {
+		const req = transaction.objectStore('NewDatabase').get(key);
+		let res: string;
+
+		req.onsuccess = (e) => {
+			res = req.result.value;
+		};
+
+		return res;
+	},
+	eject: (transaction, key: string) => {
+		transaction.objectStore('NewDatabase').delete(key);
+	},
+};
+
+type Operation = 'store' | 'get' | 'eject';
+
+const handleTransactions = (db: IDBDatabase, operation: Operation) => {
+	const transaction = db.transaction(['NewDatabase'], 'readwrite');
+
+	// handle errors
+	transaction.onerror = e => {
+		throw 'TRANSACTION ERROR: ' + e;
+	};
+
+	// store
+	operators[operation](transaction, key, value);
+};
+
+
+function operate(operation: Operation) {
+	// ensure indexedDB is in window exists
+	if ('indexedDB' in window) {
+		// variable later captures the database
+		let db: IDBDatabase;
+
+		// start by opening the database
+		// db is created of it doesn't already exist
+		// the open method returns an instance of IDBOpenDBRequest
+		const request: IDBOpenDBRequest = window.indexedDB.open('NewDatabase', 1);
+
+		request.onerror = e => {
+			throw 'DB OPEN REQUEST ERROR: ' + e;
+		};
+
+		request.onupgradeneeded = ev => {
+			// capture db here
+			if (ev!.target!.result)
+				db = ev!.target!.result;
+
+			const objectStore = db.createObjectStore('NewDatabase', { keyPath: 'key' });
+		};
+
+		request.onsuccess = ev => {
+			// capture db here
+			if (ev!.target!.result)
+				db = ev!.target!.result;
+
+			handleTransactions(db, operation);
+		};
+
+
+	}
+	else throw exceptions.indexedDB.unsupported;
+}
+
+
+async function start() {
+	const got = await customIndexedDB.get('item');
+
+	console.log('got', got);
+	console.log('stored');
+}
+
+customIndexedDB.store('item', 'value');
+start();
+
