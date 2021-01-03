@@ -1,7 +1,7 @@
 # Cella.JS
 
 ![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master) ![Made with Typescript](https://camo.githubusercontent.com/0f9fcc0ac1b8617ad4989364f60f78b2d6b32985ad6a508f215f14d8f897b8d3/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f7374726963742532302546302539462539322541412f626c7565) ![Documentation Status](https://img.shields.io/badge/docs-passing-sucess) [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://github.com/IggsGrey/cella.js/blob/main/LICENSE) ![Up to date dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-sucess)<br/>
-[![Undergoing development](https://img.shields.io/badge/Development-undergoing-yellow)](https://github.com/IggsGrey/cella.js#todo-) [![Contributors wanted](https://img.shields.io/badge/Contributors-wanted-blueviolet)](https://github.com/IggsGrey/cella.js#contributing-) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-sucess)](https://github.com/IggsGrey/cella.js/compare)<br/>
+[![Undergoing development](https://img.shields.io/badge/Development-undergoing-yellow)](https://github.com/IggsGrey/cella.js#todo) [![Contributors wanted](https://img.shields.io/badge/Contributors-wanted-blueviolet)](https://github.com/IggsGrey/cella.js#contributing) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-sucess)](https://github.com/IggsGrey/cella.js/compare)<br/>
 ![Tests unspecified](https://img.shields.io/badge/Tests-unspecified-critical) ![Logo Needed](https://img.shields.io/badge/Logo-needed%20🙏🏾-important) ![](https://img.shields.io/badge/Aliya-pretty-red)<br/>
 ![Thanks](https://img.shields.io/badge/Say%20thanks-to%20no%20one%20yet-ff69b4)
 
@@ -61,9 +61,9 @@ Cella
 Usage is unbelievably simple.
 - Import the library
 - Create an instance of Cella.
-- Specify properties (optional) ([CellaInstance](https://github.com/IggsGrey/cella.js#cella-class-properties-))
+- Specify properties (optional) ([CellaInstance](https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance))
 - Operation methods are made available to the newly instantiated class.
-([StorageItem](https://github.com/IggsGrey/cella.js#storage-item-), [RetrievedStorageItem](https://github.com/IggsGrey/cella.js#retrieved-item), [DeletedStorageItem](https://github.com/IggsGrey/cella.js#deleted-item))
+([StorageItem](https://github.com/IggsGrey/cella.js#storageitem), [RetrievedStorageItem](https://github.com/IggsGrey/cella.js#retrievedstorageitem), [DeletedStorageItem](https://github.com/IggsGrey/cella.js#deletedstorageitem))
 
 ### Examples
 
@@ -166,9 +166,9 @@ Properties you can pass to the new Cella class
 
 | Property name | Description | Data type | Required | Default value |
 | ------ | ------ | ------ | ------ | ------ |
-| storage | Specify the StorageEngine to use and additional options. NOTE: If you specify a custom database storage engine object, it must implement the [StorageEngine](https://github.com/IggsGrey/cella.js#storage-engine) interface. | [SpecifiedStorageEngine](https://github.com/IggsGrey/cella.js#specified-storage-engine)<br/>OR<br/>[StorageEngine](https://github.com/IggsGrey/cella.js#storage-engine) | no | { type: 'localStorage' }
+| storage | Specify the StorageEngine to use and additional options. NOTE: If you specify a custom database storage engine object, it must implement the [StorageEngine](https://github.com/IggsGrey/cella.js#storageengine) interface. | [SpecifiedStorageEngine](https://github.com/IggsGrey/cella.js#specifiedstorageengine)<br/>OR<br/>[StorageEngine](https://github.com/IggsGrey/cella.js#storageengine) | no | { type: 'localStorage' }
 | encrypt | An object that specifies encryption details including the encryption secret | Record<'secret', string><br/> Eg: `{ secret: 'some-string' }` | no | - |
-| transforms | Array of objects defining function `inbound` and `outbound` functions. Useful for modifying data before storing and retrieving. | [TransformObject](https://github.com/IggsGrey/cella.js#transform-object)[] | no | - |
+| transforms | Array of objects defining function `inbound` and `outbound` functions. Useful for modifying data before storing and retrieving. | [TransformObject](https://github.com/IggsGrey/cella.js#transformobject)[] | no | - |
 
 ### Interfaces
 
@@ -177,9 +177,9 @@ All instances of the in-built storage engines implement this interface, and all 
 
 | Property name | Description | Data type | Parameters |
 | ------ | ------ | ------ | ------ |
-| store | The function that inserts data into the local database. | Function | [StorageItem](https://github.com/IggsGrey/cella.js#storage-item):<br/> {<br/>`key: string` (required)<br/>`value: string` (required)<br/>} |
-| get | The function that retrieves data from the local database. | Function | [RetrievedStorageItem](https://github.com/IggsGrey/cella.js#retrieved-storage-item):<br/> {<br/>`key: string` (required)<br/>} |
-| eject | The function that deletes data from the local database. | Function | [DeletedStorageItem](https://github.com/IggsGrey/cella.js#deleted-storage-item):<br/> {<br/>`key: string` (required)<br/>} |
+| store | The function that inserts data into the local database. | Function | [StorageItem](https://github.com/IggsGrey/cella.js#storageitem):<br/> {<br/>`key: string` (required)<br/>`value: string` (required)<br/>} |
+| get | The function that retrieves data from the local database. | Function | [RetrievedStorageItem](https://github.com/IggsGrey/cella.js#retrievedstorageitem):<br/> {<br/>`key: string` (required)<br/>} |
+| eject | The function that deletes data from the local database. | Function | [DeletedStorageItem](https://github.com/IggsGrey/cella.js#deletedstorageitem):<br/> {<br/>`key: string` (required)<br/>} |
 
 
 #### StorageItem
@@ -210,7 +210,7 @@ The object parameter properties for each time you call ``cella.eject()``
 
 
 #### SpecifiedStorageEngine
-These properties are valid for the storage object value in the [CellaInstance](https://github.com/IggsGrey/cella.js#cella-instance).
+These properties are valid for the storage object value in the [CellaInstance](https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance).
 
 | Property name | Description | Data type | Required | Default value |
 | ------ | ------ | ------ | ------ | ------ |
@@ -219,7 +219,7 @@ These properties are valid for the storage object value in the [CellaInstance](h
 `NOTE: IN-BUILT SUPPORT FOR INDEXEDDB IS NOT YET IMPLEMENTED`
 
 #### TransformObject
-These properties are valid for an object value in the transforms array specified in a [CellaInstance](https://github.com/IggsGrey/cella.js#cella-instance).
+These properties are valid for an object value in the transforms array specified in a [CellaInstance](https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance).
 
 | Property name | Description | Data type | Required | Default value |
 | ------ | ------ | ------ | ------ | ------ |
