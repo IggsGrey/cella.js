@@ -1,17 +1,11 @@
 export interface StorageItem {
 	key: string,
 	value: any,
-	encrypt?: {
-		secret: string
-	}
 }
 
 
 export interface RetrievedStorageItem {
 	key: string,
-	decrypt?: {
-		secret: string
-	}
 }
 
 
@@ -34,6 +28,14 @@ export type SpecifiedStorageEngine = {
 }
 
 export type CellaInstance = {
-	storage?: SpecifiedStorageEngine | StorageEngine
+	storage?: SpecifiedStorageEngine | StorageEngine,
+	transforms?: TransformObject[],
+	encrypt?: {
+		secret: string
+	}
 }
 
+export interface TransformObject {
+	inbound: (args0: any) => any,
+	outbound: (args0: any) => any,
+}
