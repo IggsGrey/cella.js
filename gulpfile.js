@@ -6,7 +6,7 @@ sass.compiler = require('node-sass');
 const paths = {
 	scripts: {
 		src: './sitedocs/landing',
-		dest: './sitedocs/dist/content'
+		dest: './sitedocs/dist'
 	}
 };
 
