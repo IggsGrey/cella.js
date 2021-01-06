@@ -1,0 +1,1 @@
+declare const Cella: import('cella.js/dist').Cella;

@@ -5,3 +5,7 @@ webpack.config.js
 package-lock.json
 .gitignore
 .git
+sitedocs
+docma.json
+gulpfile.json
+save-commands.json

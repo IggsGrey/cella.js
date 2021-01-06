@@ -1,0 +1,6 @@
+{
+	"commands": [
+		"sitedocs/index.js: npx docma",
+		"docma.json: npx docma"
+	]
+}

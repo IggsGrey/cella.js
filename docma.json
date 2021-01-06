@@ -1,0 +1,82 @@
+{
+	"src": [
+		"./sitedocs/index.js",
+		"./LICENSE:md",
+		{
+			"index":"./sitedocs/landing/index.html",
+			"guide":"./README.md"
+		}
+	],
+	"dest":"./sitedocs/dist/docs",
+	"app":{
+		"title":"Cella.JS Docs",
+		"routing":"path",
+		"base":"/"
+	},
+	"markdown": {
+		"gfm": true,
+		"tables": true,
+		"breaks": false,
+		"pedantic": false,
+		"sanitize": false,
+		"smartLists": true,
+		"smartypants": false,
+		"xhtml": false,
+		"tasks": true,
+		"emoji": true
+	},
+	"template":{
+		"path":"zebra",
+		"options":{
+			"title":{"label":"Cella.JS Docs","href":"/api"},
+			"navbar": {
+				"enabled": true,
+				"menu": [
+					{
+						"label": "Getting Started",
+						"items": [
+							{ "label": "Installation", "href": "/installation" },
+							{ "separator": true },
+							{ "label": "Docs", "href": "/api" },
+							{ "separator": true },
+							{ "label": "Cella.JS (Builder) API", "href": "api" },
+							{ "label": "Instance Configuration", "href": "api/#CellaInterface" }
+						]
+					},
+					{
+						"label": "License",
+						"href": "/content/license"
+					},
+					{
+						// "iconClass": "fas fa-cloud-download-alt",
+						"label": "Download",
+						"items": [
+							{
+								"label": "<code>npm i cella.js --save</code>",
+								"href": "",
+								"target": "_blank"
+							},
+							{
+								"label": "Cella.JS Releases",
+								"href": "https://github.com/IggsGrey/cella.js/releases",
+								"target": "_blank"
+							},
+							{ "separator": true },
+							{
+								"label": "Change Log",
+								"href": "https://github.com/IggsGrey/cella.js/blob/main/CHANGELOG.md"
+							}
+						]
+					},
+					{
+						"iconClass": "fab fa-lg fa-github",
+						"label": "",
+						"href": "https://github.com/IggsGrey/cella.js",
+						"target": "_blank"
+					}
+				]
+			},
+			"sidebar":{"enabled":true,"outline":"tree"}
+		}
+	}
+}

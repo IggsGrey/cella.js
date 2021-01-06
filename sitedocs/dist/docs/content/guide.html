@@ -1,0 +1,446 @@
+
+<html><head></head><body><h1 id="cellajs">Cella.JS</h1>
+<hr />
+<p><img src="https://travis-ci.org/joemccann/dillinger.svg?branch=master" alt="Build Status" style="max-width: 100%;"> <img src="https://camo.githubusercontent.com/0f9fcc0ac1b8617ad4989364f60f78b2d6b32985ad6a508f215f14d8f897b8d3/68747470733a2f2f62616467656e2e6e65742f62616467652f547970655363726970742f7374726963742532302546302539462539322541412f626c7565" alt="Made with Typescript" style="max-width: 100%;"> <img src="https://img.shields.io/badge/docs-passing-sucess" alt="Documentation Status" style="max-width: 100%;"> <a href="https://github.com/IggsGrey/cella.js/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-ISC-blue.svg" alt="License: ISC" style="max-width: 100%;"></a> <img src="https://img.shields.io/badge/dependencies-up%20to%20date-sucess" alt="Up to date dependencies" style="max-width: 100%;">
+<br>
+<a href="https://github.com/IggsGrey/cella.js#todo"><img src="https://img.shields.io/badge/Development-undergoing-yellow" alt="Undergoing development" style="max-width: 100%;"></a> <a href="https://github.com/IggsGrey/cella.js#contributing"><img src="https://img.shields.io/badge/Contributors-wanted-blueviolet" alt="Contributors wanted" style="max-width: 100%;"></a> <a href="https://github.com/IggsGrey/cella.js/compare"><img src="https://img.shields.io/badge/PRs-welcome-sucess" alt="PRs Welcome" style="max-width: 100%;"></a>
+<br>
+<img src="https://img.shields.io/badge/Tests-unspecified-critical" alt="Tests unspecified" style="max-width: 100%;"> <img src="https://img.shields.io/badge/Logo-needed%20%F0%9F%99%8F%F0%9F%8F%BE-important" alt="Logo Needed" style="max-width: 100%;">
+<br>
+<img src="https://img.shields.io/badge/Say%20thanks-to%20no%20one%20yet-ff69b4" alt="Thanks" style="max-width: 100%;"></p>
+<p>Cella.JS is a JavaScript package that helps you manage data storage within the browser. It basically serves as a basic wrapper around the browser's default local storage APIs in order to provide extra functionality. Cella.JS eliminates the need to write extra code when working with the browser's local storage. It provides features such as:</p>
+<ul>
+<li>In-built support for encryption.</li>
+<li>Store abstract data types without needing to convert to a string first.</li>
+<li>Ability to add custom storage engine.</li>
+<li>Ability to add custom (data-transformational) functions to be executed before or after data is stored or retrieved.</li>
+<li>#Working on in-built support for indexedDB.</li>
+</ul>
+<h1 id="table-of-contents">Table of Contents</h1>
+<hr />
+<ul>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#npm">NPM</a></li>
+<li><a href="#yarn">Yarn</a></li>
+<li><a href="#browser">Browser</a></li>
+</ul>
+</li>
+<li><a href="#developing-locally">Developing locally</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#importing-the-library">Importing the Library</a><ul>
+<li><a href="#es6-modules">ES6 Modules</a></li>
+<li><a href="#nodejs-modules---commonjs">NodeJS Modules / Commonjs</a></li>
+<li><a href="#browser-1">Browser</a></li>
+</ul>
+</li>
+<li><a href="#how-to-use">How to Use</a><ul>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#basic-usage">Basic Usage</a></li>
+<li><a href="#applying-transforms-and-encryption">Applying Transforms And Encryption</a></li>
+<li><a href="#specifying-a-custom-database-engine">Specifying A Custom Database Engine</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#api">API</a><ul>
+<li><a href="#cella-class-properties--cellainstance-">Cella Class Properties (CellaInstance)</a></li>
+<li><a href="#interfaces">Interfaces</a><ul>
+<li><a href="#storageengine">StorageEngine</a></li>
+<li><a href="#storageitem">StorageItem</a></li>
+<li><a href="#retrievedstorageitem">RetrievedStorageItem</a></li>
+<li><a href="#deletedstorageitem">DeletedStorageItem</a></li>
+<li><a href="#specifiedstorageengine">SpecifiedStorageEngine</a></li>
+<li><a href="#transformobject">TransformObject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#contributing">Contributing</a></li>
+<li><a href="#license">License</a></li>
+<li><a href="#upcoming-features-">Upcoming Features!</a></li>
+<li><a href="#todo">Todo</a></li>
+<li><a href="#browser-support">Browser Support</a></li>
+</ul>
+<p><small><i><a href="http://ecotrust-canada.github.io/markdown-toc/">Table of contents generated with markdown-toc</a></i></small></p>
+<h1 id="installation">Installation</h1>
+<hr />
+<h2 id="npm">NPM</h2>
+<hr />
+<pre><code class="sh">$ npm install cella.js</code></pre>
+<h2 id="yarn">Yarn</h2>
+<hr />
+<pre><code class="sh">$ yarn add cella.js</code></pre>
+<h2 id="browser">Browser</h2>
+<hr />
+<p><code>https://</code></p>
+<h1 id="developing-locally">Developing locally</h1>
+<hr />
+<p>To clone and build this project locally, run the following commands:</p>
+<pre><code class="sh">$ git clone https://github.com/IggsGrey/cella.js.git
+$ npm i
+$ npm run dev</code></pre>
+<h1 id="usage">Usage</h1>
+<hr />
+<h2 id="importing-the-library">Importing the Library</h2>
+<hr />
+<h3 id="es6-modules">ES6 Modules</h3>
+<pre><code class="js">import Cella from 'cella.js';</code></pre>
+<h3 id="nodejs-modules---commonjs">NodeJS Modules / Commonjs</h3>
+<pre><code class="js">const Cella = require('cella.js');</code></pre>
+<h3 id="browser">Browser</h3>
+<p>Import the library with a script tag and the Cella API shall be made available.</p>
+<pre><code class="js">Cella</code></pre>
+<h2 id="how-to-use">How to Use</h2>
+<hr />
+<p>Usage is unbelievably simple.</p>
+<ul>
+<li>Import the library</li>
+<li>Create an instance of Cella.</li>
+<li>Specify properties (optional) (<a href="https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance">CellaInstance</a>)</li>
+<li>Operation methods are made available to the newly instantiated class.
+(<a href="https://github.com/IggsGrey/cella.js#storageitem">StorageItem</a>, <a href="https://github.com/IggsGrey/cella.js#retrievedstorageitem">RetrievedStorageItem</a>, <a href="https://github.com/IggsGrey/cella.js#deletedstorageitem">DeletedStorageItem</a>)</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<h4 id="basic-usage">Basic Usage</h4>
+<pre><code class="js">import Cella from 'cella.js';
+
+// create an instance of Cella!
+const cella = new Cella();
+
+
+// store an item
+cella.store({
+    key: 'sample-key',
+    value: ['item1', 'item2', 'item3', 'item4']
+});
+// void
+
+
+// retrieve an item
+const retrievedItem = cella.get({
+    key: 'sample-key'
+});
+console.log(retrievedItem);
+// Array ['item1', 'item2', 'item3', 'item4']
+
+
+// delete an item
+cella.eject({
+    key: 'sample-key',
+});
+// void
+</code></pre>
+<h4 id="applying-transforms-and-encryption">Applying Transforms And Encryption</h4>
+<pre><code class="js">import Cella from 'cella.js'
+
+const mySetData = new Set(['pineapples', 'are', 'great']);
+
+console.log(mySetData);
+
+const cella = new Cella({
+    encrypt: {
+        secret: 'my-secret-key' // yup that's it!
+    },
+    transforms: [
+        {
+            inbound: function(yourSetData) {
+                // convert set to array
+                return [...yourSetData];
+            },
+            outbound: function(yourConvertedSetData) {
+                // convert array back to set
+                return new Set(yourConvertedSetData);
+            }
+        },
+        // ...unlimitedTransforms
+    ]
+});
+
+
+cella.store({
+    key: 'my-key',
+    value: mySetData
+});
+
+console.log(cella.get({ key: 'my-key' }));
+</code></pre>
+<h4 id="specifying-a-custom-database-engine">Specifying A Custom Database Engine</h4>
+<pre><code class="js">import Cella from 'cella.js';
+
+// create an instance of Cella!
+const cella = new Cella({
+    storage: {
+        store: (key, value) =&gt; {
+            // code to implement custom storing
+        },
+        get: (key) =&gt; {
+            // code to implement custom retrieval
+        },
+        eject: (key) =&gt; {
+            // code to implement custom deletion
+        }
+    }
+});</code></pre>
+<h2 id="api">API</h2>
+<hr />
+<h3 id="cella-class-properties--cellainstance-">Cella Class Properties (CellaInstance)</h3>
+<p>Properties you can pass to the new Cella class</p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>storage</td>
+<td>Specify the StorageEngine to use and additional options. NOTE: If you specify a custom database storage engine object, it must implement the <a href="https://github.com/IggsGrey/cella.js#storageengine">StorageEngine</a> interface.</td>
+<td><a href="https://github.com/IggsGrey/cella.js#specifiedstorageengine">SpecifiedStorageEngine</a><br>OR<br><a href="https://github.com/IggsGrey/cella.js#storageengine">StorageEngine</a></td>
+<td>no</td>
+<td>{ type: 'localStorage' }</td>
+</tr>
+<tr>
+<td>encrypt</td>
+<td>An object that specifies encryption details including the encryption secret</td>
+<td>Record&lt;'secret', string&gt;<br> Eg: <code>{ secret: 'some-string' }</code></td>
+<td>no</td>
+<td>-</td>
+</tr>
+<tr>
+<td>transforms</td>
+<td>Array of objects defining function <code>inbound</code> and <code>outbound</code> functions. Useful for modifying data before storing and retrieving.</td>
+<td><a href="https://github.com/IggsGrey/cella.js#transformobject">TransformObject</a>[]</td>
+<td>no</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id="interfaces">Interfaces</h3>
+<h4 id="storageengine">StorageEngine</h4>
+<p>All instances of the in-built storage engines implement this interface, and all custom storage engines must implement this interface as well.</p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>store</td>
+<td>The function that inserts data into the local database.</td>
+<td>Function</td>
+<td><a href="https://github.com/IggsGrey/cella.js#storageitem">StorageItem</a>:<br> {<br><code>key: string</code> (required)<br><code>value: string</code> (required)<br>}</td>
+</tr>
+<tr>
+<td>get</td>
+<td>The function that retrieves data from the local database.</td>
+<td>Function</td>
+<td><a href="https://github.com/IggsGrey/cella.js#retrievedstorageitem">RetrievedStorageItem</a>:<br> {<br><code>key: string</code> (required)<br>}</td>
+</tr>
+<tr>
+<td>eject</td>
+<td>The function that deletes data from the local database.</td>
+<td>Function</td>
+<td><a href="https://github.com/IggsGrey/cella.js#deletedstorageitem">DeletedStorageItem</a>:<br> {<br><code>key: string</code> (required)<br>}</td>
+</tr>
+</tbody></table>
+<h4 id="storageitem">StorageItem</h4>
+<p>The object parameter properties for each time you call <code>cella.store()</code></p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>The key/label that identifies the item in the localstorage.</td>
+<td>string</td>
+<td>true</td>
+<td>-</td>
+</tr>
+<tr>
+<td>value</td>
+<td>The value of the item to be stored.</td>
+<td>any</td>
+<td>true</td>
+<td>-</td>
+</tr>
+<tr>
+<td>encrypt</td>
+<td>Encryption properties for the data to be stored.</td>
+<td>{ secret: string }</td>
+<td>false</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<h4 id="retrievedstorageitem">RetrievedStorageItem</h4>
+<p>The object parameter properties for each time you call <code>cella.get()</code></p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>The key/label that identifies the item in the localstorage.</td>
+<td>string</td>
+<td>true</td>
+<td>-</td>
+</tr>
+<tr>
+<td>decrypt</td>
+<td>Decryption properties for the data to be stored.</td>
+<td>{ secret: string }</td>
+<td>false</td>
+<td>null</td>
+</tr>
+</tbody></table>
+<h4 id="deletedstorageitem">DeletedStorageItem</h4>
+<p>The object parameter properties for each time you call <code>cella.eject()</code></p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>key</td>
+<td>The key/label that identifies the item in the localstorage.</td>
+<td>string</td>
+<td>true</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h4 id="specifiedstorageengine">SpecifiedStorageEngine</h4>
+<p>These properties are valid for the storage object value in the <a href="https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance">CellaInstance</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>type</td>
+<td>The preferred type of in-built storage.</td>
+<td>'localStorage' | 'indexedDB'</td>
+<td>true</td>
+<td>'localStorage'</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The preferred name of the indexedDB storage.</td>
+<td>string</td>
+<td>required only when type == 'indexedDB'</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p><code>NOTE: IN-BUILT SUPPORT FOR INDEXEDDB IS NOT YET IMPLEMENTED</code></p>
+<h4 id="transformobject">TransformObject</h4>
+<p>These properties are valid for an object value in the transforms array specified in a <a href="https://github.com/IggsGrey/cella.js#cella-class-properties-cellainstance">CellaInstance</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Property name</th>
+<th>Description</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>inbound</td>
+<td>Function that is executed ech time data is being stored. This function is executed before any other changes are made to the data.</td>
+<td><t>(args0: T) =&gt; any</t></td>
+<td>yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>outbound</td>
+<td>Function that is executed ech time data is being retrieved. This function is executed after all other changes have been made to the data.</td>
+<td><t>(args0: T) =&gt; any</t></td>
+<td>yes</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h1 id="contributing">Contributing</h1>
+<hr />
+<p>Want to contribute? Great! I am currently seeking contributors for remaining features including adding in-built support for more DB engines. You can get started by reading the current <a href="">issues</a> or opening one yourself.
+Don't forget to read the ethics and conduct code for contributors in the <a href="https://github.com/IggsGrey/cella.js/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+You may also contact <a href="https://github.com/IggsGrey">@IggsGrey</a> on:</p>
+<ul>
+<li><a href="mailto:jaygrey.jg@gmail.com"><img src="https://img.shields.io/badge/mailto-jaygrey.jg%40gmail.com-%23cc372e" alt="jaygrey.jg@gmail.com" style="max-width: 100%;"></a></li>
+<li><img src="https://img.shields.io/badge/discord-scarrexx%235134-%236f86d4" alt="discord - scarrexx#5134" style="max-width: 100%;"></li>
+<li><img src="https://img.shields.io/badge/reddit-%40scar__reX-%23f63000" alt="reddit - @scar_reX" style="max-width: 100%;"></li>
+<li><a href="https://twitter.com/devx_gh"><img src="https://img.shields.io/badge/twitter-%40devx__gh-%231c9cea" alt="twitter - @devx_gh" style="max-width: 100%;"></a></li>
+</ul>
+<h1 id="license">License</h1>
+<hr />
+<p>This project uses the ISC license and it can be found here: <a href="https://github.com/IggsGrey/cella.js/blob/main/LICENSE">LICENSE</a></p>
+<h1 id="upcoming-features-">Upcoming Features!</h1>
+<hr />
+<ul>
+<li>In-built support for indexedDB.</li>
+<li>Integration with web workers.</li>
+<li>Async callbacks.</li>
+<li>Data compression.</li>
+<li>Smart fallbacks for browser support issues. Eg: fallback to localStorage in browsers that do not support indexedDB (optional ofcourse).</li>
+</ul>
+<h1 id="todo">Todo</h1>
+<hr />
+<ul>
+<li>Write tests.</li>
+<li>Implement features above (obviously Tom!).</li>
+<li>Build docs site with demos</li>
+<li>Work on browser support docs</li>
+<li>Codesandbox examples</li>
+</ul>
+<h1 id="browser-support">Browser Support</h1>
+<hr />
+<table>
+<thead>
+<tr>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" style="max-width: 100%;"><br>IE / Edge</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" style="max-width: 100%;"><br>Firefox</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" style="max-width: 100%;"><br>Chrome</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" style="max-width: 100%;"><br>Safari</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" style="max-width: 100%;"><br>iOS Safari</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/samsung-internet/samsung-internet_48x48.png" alt="Samsung" style="max-width: 100%;"><br>Samsung</th>
+<th><img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" style="max-width: 100%;"><br>Opera</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>12</td>
+<td>3.5</td>
+<td>4</td>
+<td>4</td>
+<td>3.2</td>
+<td>1.0</td>
+<td>10.5</td>
+</tr>
+</tbody></table>
+<p><img src="https://code.cdn.mozilla.net/for-firefox/badges/assets/Developers_For_Firefox_Dark.png" alt="Developers for Firefox" style="max-width: 100%;"></p>
+</body></html>

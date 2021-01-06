@@ -1,0 +1,10 @@
+{
+    "inputDir": ".",
+    "outputDir": ".",
+    "useNpmSass": true,
+    "style":"compressed",
+    "sourcemap":"none",
+    "showStartup":true,
+    "showOutput":true,
+    "showError":true
+}
