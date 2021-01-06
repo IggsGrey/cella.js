@@ -40,8 +40,17 @@ let config = {
 	output: {
 		path: __dirname + '/dist',
 		filename: 'index.js',
-		library: 'cella.js',
+		library: 'Cella',
 		libraryTarget: 'umd'
+	},
+	devtool: 'source-map',
+	externals: {
+		'crypto-js': {
+			commonjs: 'crypto-js',
+			commonjs2: 'crypto-js',
+			amd: 'crypto-js',
+			root: 'CryptoJS',
+		},
 	},
 	plugins: [
 		// new JavaScriptObfuscator (obfuscatorOptions)
