@@ -12,7 +12,7 @@
 		"title":"Cella.JS Docs",
 		"routing":"path",
 		"server": "github",
-		"base":"/docs"
+		"base":"/docs/docs"
 	},
 	"markdown": {
 		"gfm": true,
