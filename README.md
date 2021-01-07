@@ -179,7 +179,7 @@ console.log(cella.get({ key: 'my-key' }));
 
 ```
 
-#### Specifying A Custom Database Engine
+#### Specifying A Custom Storage Engine
 
 ```js
 import Cella from 'cella.js';

@@ -52,7 +52,8 @@ body, .cella {
       font-size: 16px;
       margin: 0 0 20px 0; }
     .cella .cella-hero .cella-hero-hol div a {
-      font-size: 20px; }
+      font-size: 20px;
+      margin: 0 5px; }
 
 .cella .cella-body {
   padding-top: 50px;
