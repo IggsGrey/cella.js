@@ -7,10 +7,11 @@
 			"guide":"./README.md"
 		}
 	],
-	"dest":"./sitedocs/dist/docs",
+	"dest":"./docs/docs",
 	"app":{
 		"title":"Cella.JS Docs",
 		"routing":"path",
+		"server": "github",
 		"base":"/"
 	},
 	"markdown": {
