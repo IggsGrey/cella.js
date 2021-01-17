@@ -66,7 +66,7 @@ $ yarn add cella.js
 ```
 
 ## Browser
-`https://`
+`https://unpkg.com/cella.js@0.0.0/dist/index.js`
 
 
 # Developing locally
@@ -121,23 +121,28 @@ const cella = new Cella();
 cella.store({
 	key: 'sample-key',
 	value: ['item1', 'item2', 'item3', 'item4']
+}).then(() => {
+    console.log('void');
 });
-// void
+// Promise<void>
 
 
 // retrieve an item
 const retrievedItem = cella.get({
 	key: 'sample-key'
+}).then((res) => {
+    console.log('got',res);
 });
-console.log(retrievedItem);
-// Array ['item1', 'item2', 'item3', 'item4']
+// Promise<Array ['item1', 'item2', 'item3', 'item4']>
 
 
 // delete an item
 cella.eject({
 	key: 'sample-key',
+}).then(() => {
+    console.log('void');
 });
-// void
+// Promise<void>
 
 ```
 
@@ -175,7 +180,7 @@ cella.store({
 	value: mySetData
 });
 
-console.log(cella.get({ key: 'my-key' }));
+cella.get({ key: 'my-key' }).then(res => console.log(res));
 
 ```
 
@@ -292,7 +297,6 @@ This project uses the ISC license and it can be found here: [LICENSE](https://gi
 
   - In-built support for indexedDB.
   - Integration with web workers.
-  - Async callbacks.
   - Data compression.
   - Smart fallbacks for browser support issues. Eg: fallback to localStorage in browsers that do not support indexedDB (optional ofcourse).
 
