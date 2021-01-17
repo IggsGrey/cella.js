@@ -64,7 +64,7 @@ export default class Cella {
 	};
 
 
-	private execGet = ({ key }: RetrievedStorageItem): unknown => {
+	private execGet = ({ key }: RetrievedStorageItem): any => {
 		if (!key || !key.length) throw exceptions.nullKey;
 
 		let value: string = this.storage.get(key) ?? '';
@@ -112,7 +112,7 @@ export default class Cella {
 	}
 
 
-	public get = (param: string | RetrievedStorageItem): Promise<unknown> => {
+	public get = (param: string | RetrievedStorageItem): Promise<any> => {
 		if (typeof param == 'object') {
 			return Promise.resolve(this.execGet({ key: param ?.key }));
 		} else if (typeof param == 'string') {
