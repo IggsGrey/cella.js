@@ -1,5 +1,5 @@
-import { applyDecrypt, applyEncrypt } from './encrypt';
-import exceptions from './exceptions';
+import { applyDecrypt, applyEncrypt } from './encryption/encrypt';
+import exceptions from './exceptions/exceptions';
 import { DeletedStorageItem, CellaInstance, RetrievedStorageItem, SpecifiedStorageEngine, StorageEngine, StorageItem, TransformObject } from '../declarations';
 import storage from './storage/storage';
 
@@ -8,7 +8,7 @@ class Cella {
 	public storage: StorageEngine;
 	public transforms: TransformObject[] = [];
 	public encrypt: Record<'secret', string> | undefined;
-	private defaultStorage: StorageEngine = storage.localStorage
+	private defaultStorage: StorageEngine = storage.localStorage;
 
 	constructor(props?: CellaInstance) {
 		// determine storage engine
@@ -37,7 +37,7 @@ class Cella {
 	}
 
 
-	public store = ({ key, value }: StorageItem): void => {
+	private execStore = ({ key, value }: StorageItem): void => {
 		if (!key || !key.length) throw exceptions.nullKey;
 
 		// if(localStorage.getItem(key)) throw exceptions.keyExists
@@ -64,7 +64,7 @@ class Cella {
 	};
 
 
-	public get = ({ key }: RetrievedStorageItem): unknown => {
+	private execGet = ({ key }: RetrievedStorageItem): unknown => {
 		if (!key || !key.length) throw exceptions.nullKey;
 
 		let value: string = this.storage.get(key) ?? '';
@@ -100,11 +100,41 @@ class Cella {
 	};
 
 
-	public eject = ({ key }: DeletedStorageItem): void => {
+	private execEject = ({ key }: DeletedStorageItem): void => {
 		if (!key || !key.length) throw exceptions.nullKey;
 
 		this.storage.eject(key);
 	};
+
+
+	public store = ({ key, value }: StorageItem): Promise<void> => {
+		return Promise.resolve(this.execStore({ key, value }));
+	}
+
+
+	public get = (param: string | RetrievedStorageItem): Promise<unknown> => {
+		if (typeof param == 'object') {
+			return Promise.resolve(this.execGet({ key: param ?.key }));
+		} else if (typeof param == 'string') {
+			return Promise.resolve(this.execGet({ key: param }));
+		} else {
+			return Promise.reject();
+		}
+	}
+
+
+	public eject = (param: string | DeletedStorageItem): Promise<void> => {
+		if (typeof param == 'object') {
+			return Promise.resolve(this.execEject({ key: param ?.key }));
+		} else if (typeof param == 'string') {
+			return Promise.resolve(this.execEject({ key: param }));
+		} else {
+			return Promise.reject();
+		}
+		// return (new Promise((resolve, reject) => {
+		// 	resolve(this.execEject({ key }));
+		// })) as Promise<void>;
+	}
 
 }
 
