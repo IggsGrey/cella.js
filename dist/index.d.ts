@@ -5,8 +5,11 @@ declare class Cella {
     encrypt: Record<'secret', string> | undefined;
     private defaultStorage;
     constructor(props?: CellaInstance);
-    store: ({ key, value }: StorageItem) => void;
-    get: ({ key }: RetrievedStorageItem) => unknown;
-    eject: ({ key }: DeletedStorageItem) => void;
+    private execStore;
+    private execGet;
+    private execEject;
+    store: ({ key, value }: StorageItem) => Promise<void>;
+    get: (param: string | RetrievedStorageItem) => Promise<unknown>;
+    eject: (param: string | DeletedStorageItem) => Promise<void>;
 }
 export default Cella;
