@@ -1,1 +1,2 @@
-declare const Cella: any;
+import Cella from './cella';
+export default Cella;
