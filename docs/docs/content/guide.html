@@ -74,7 +74,7 @@
 <pre><code class="sh">$ yarn add cella.js</code></pre>
 <h2 id="browser">Browser</h2>
 <hr />
-<p><code>https://</code></p>
+<p><code>https://unpkg.com/cella.js@0.0.0/dist/index.js</code></p>
 <h1 id="developing-locally">Developing locally</h1>
 <hr />
 <p>To clone and build this project locally, run the following commands:</p>
@@ -114,23 +114,28 @@ const cella = new Cella();
 cella.store({
     key: 'sample-key',
     value: ['item1', 'item2', 'item3', 'item4']
+}).then(() =&gt; {
+    console.log('void');
 });
-// void
+// Promise&lt;void&gt;
 
 
 // retrieve an item
 const retrievedItem = cella.get({
     key: 'sample-key'
+}).then((res) =&gt; {
+    console.log('got',res);
 });
-console.log(retrievedItem);
-// Array ['item1', 'item2', 'item3', 'item4']
+// Promise&lt;Array ['item1', 'item2', 'item3', 'item4']&gt;
 
 
 // delete an item
 cella.eject({
     key: 'sample-key',
+}).then(() =&gt; {
+    console.log('void');
 });
-// void
+// Promise&lt;void&gt;
 </code></pre>
 <h4 id="applying-transforms-and-encryption">Applying Transforms And Encryption</h4>
 <pre><code class="js">import Cella from 'cella.js'
@@ -164,7 +169,7 @@ cella.store({
     value: mySetData
 });
 
-console.log(cella.get({ key: 'my-key' }));
+cella.get({ key: 'my-key' }).then(res =&gt; console.log(res));
 </code></pre>
 <h4 id="specifying-a-custom-storage-engine">Specifying A Custom Storage Engine</h4>
 <pre><code class="js">import Cella from 'cella.js';
@@ -405,7 +410,6 @@ You may also contact <a href="https://github.com/IggsGrey">@IggsGrey</a> on:</p>
 <ul>
 <li>In-built support for indexedDB.</li>
 <li>Integration with web workers.</li>
-<li>Async callbacks.</li>
 <li>Data compression.</li>
 <li>Smart fallbacks for browser support issues. Eg: fallback to localStorage in browsers that do not support indexedDB (optional ofcourse).</li>
 </ul>

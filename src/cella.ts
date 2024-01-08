@@ -64,10 +64,10 @@ export default class Cella {
 	};
 
 
-	private execGet = ({ key }: RetrievedStorageItem): any => {
+	private execGet = <T>({ key }: RetrievedStorageItem): T => {
 		if (!key || !key.length) throw exceptions.nullKey;
 
-		let value: string = this.storage.get(key) ?? '';
+		let value = this.storage.get(key) ?? '';
 
 		// apply decryption if any
 		if (this.encrypt) {
@@ -96,7 +96,7 @@ export default class Cella {
 		}
 
 
-		return value;
+		return value as T;
 	};
 
 
@@ -112,11 +112,11 @@ export default class Cella {
 	}
 
 
-	public get = (param: string | RetrievedStorageItem): Promise<any> => {
+	public get = <T>(param: string | RetrievedStorageItem): Promise<T> => {
 		if (typeof param == 'object') {
-			return Promise.resolve(this.execGet({ key: param ?.key }));
+			return Promise.resolve(this.execGet<T>({ key: param ?.key }));
 		} else if (typeof param == 'string') {
-			return Promise.resolve(this.execGet({ key: param }));
+			return Promise.resolve(this.execGet<T>({ key: param }));
 		} else {
 			return Promise.reject();
 		}

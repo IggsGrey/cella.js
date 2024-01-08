@@ -29,7 +29,7 @@ class Cella {
 	/**
 	* Method used to store data.
 	* @param {Object} storeParams - Specification for the item to be stored.
-	* @return {void}
+	* @return {Promise<void>}
 	* <blockquote>See {@link #StorageItem|`StorageItem`} for more details</blockquote>
 	* @example
 	* cella.store(storeParams);
@@ -40,7 +40,7 @@ class Cella {
 	/**
 	* Method used to retrieve stored data.
 	* @param {Object} getParams - Specification for the item to be retrieved.
-	* @return {unknown} - The initial data type of the data that was stored. i.e: store an array, retrieve an array!
+	* @return {Promise<any>} - The initial data type of the data that was stored. i.e: store an array, retrieve an array!
 	* See {@link #RetrievedStorageItem|`RetrievedStorageItem`} for more details
 	* @example
 	* cella.get(getParams);
@@ -51,7 +51,7 @@ class Cella {
 	/**
 	* Method used to delete data.
 	* @param {Object} ejectParams - Specification for the item to be deleted.
-	* @return {void}
+	* @return {Promise<void>}
 	* See {@link #DeletedStorageItem|`DeletedStorageItem`} for more details
 	* @example
 	* cella.eject(ejectParams);
@@ -73,7 +73,7 @@ class Cella {
 	* cella.store({
 	* 	key: 'itemKey',
 	* 	value: ['array', 'as', 'item', 'value']
-	* });
+	* }).then(() => console.log('stored'));
 */
 
 
@@ -87,7 +87,7 @@ class Cella {
 	* @example
 	* cella.get({
 	* 	key: 'itemKey'
-	* });
+	* }).then(res => console.log(res));
 */
 
 
@@ -101,7 +101,7 @@ class Cella {
 	* @example
 	* cella.eject({
 	* 	key: 'itemKey'
-	* });
+	* }).then(() => console.log('deleted, got void'));
 */
 
 

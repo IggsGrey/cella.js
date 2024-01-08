@@ -36,17 +36,17 @@
 					{
 						"label": "Getting Started",
 						"items": [
-							{ "label": "Installation", "href": "/installation" },
+							{ "label": "Installation", "href": "/#installation" },
 							{ "separator": true },
-							{ "label": "Docs", "href": "/api" },
+							{ "label": "Docs", "href": "/cella.js/docs" },
 							{ "separator": true },
-							{ "label": "Cella.JS (Builder) API", "href": "api" },
-							{ "label": "Instance Configuration", "href": "api/#CellaInterface" }
+							{ "label": "Cella.JS (Builder) API", "href": "/cella.js/docs" },
+							{ "label": "Instance Configuration", "href": "/cella.js/docs/#CellaInterface" }
 						]
 					},
 					{
 						"label": "License",
-						"href": "/content/license"
+						"href": "/cella.js/docs/content/license"
 					},
 					{
 						// "iconClass": "fas fa-cloud-download-alt",
@@ -54,7 +54,7 @@
 						"items": [
 							{
 								"label": "<code>npm i cella.js --save</code>",
-								"href": "",
+								"href": "https://www.npmjs.com/package/cella.js",
 								"target": "_blank"
 							},
 							{
@@ -65,7 +65,8 @@
 							{ "separator": true },
 							{
 								"label": "Change Log",
-								"href": "https://github.com/IggsGrey/cella.js/blob/main/CHANGELOG.md"
+								"href": "https://github.com/IggsGrey/cella.js/blob/main/CHANGELOG.md",
+								"target": "_blank"
 							}
 						]
 					},

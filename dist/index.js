@@ -12,58 +12,9 @@ return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/encryption/encrypt.ts":
-/*!***********************************!*\
-  !*** ./src/encryption/encrypt.ts ***!
-  \***********************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.applyDecrypt = exports.applyEncrypt = void 0;
-var crypto_js_1 = __importDefault(__webpack_require__(/*! crypto-js */ "crypto-js"));
-// Encrypt
-var applyEncrypt = function (text, secret) {
-    return crypto_js_1.default.AES.encrypt(text, secret).toString();
-};
-exports.applyEncrypt = applyEncrypt;
-// Decrypt
-var applyDecrypt = function (cipherText, secret) {
-    var bytes = crypto_js_1.default.AES.decrypt(cipherText, secret);
-    return bytes.toString(crypto_js_1.default.enc.Utf8);
-};
-exports.applyDecrypt = applyDecrypt;
-
-
-/***/ }),
-
-/***/ "./src/exceptions/exceptions.ts":
-/*!**************************************!*\
-  !*** ./src/exceptions/exceptions.ts ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, exports) => {
-
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var exceptions = {
-    nullSecretKey: 'NO SECRET KEY DEFINED. YOU NEED TO DEFINED A SECRET KEY IN ORDER TO SUCCESSFULLY ENCRYPT OR DECRYPT DATA.',
-    nullKey: 'NO STORAGE ITEM KEY DEFINED. UNABLE TO IDENTIFY STORAGE ITEM TO RETRIEVE',
-    retrievingUndecryptedItem: 'TRYING TO RETRIEVE ENCRYPTED ITEM WITH INVALD OR UNSPECIFIED DECRYPTION CODE',
-    indexedDB: {
-        unsupported: 'THIS BROWSER DOES NOT YET SUPPORT THE INDEXEDDB SPECIFICATION OR IT IS IMPROPERLY SPECIFED'
-    }
-};
-exports.default = exceptions;
-
-
-/***/ }),
-
-/***/ "./src/index.ts":
+/***/ "./src/cella.ts":
 /*!**********************!*\
-  !*** ./src/index.ts ***!
+  !*** ./src/cella.ts ***!
   \**********************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -198,6 +149,69 @@ var Cella = /** @class */ (function () {
     return Cella;
 }());
 exports.default = Cella;
+
+
+/***/ }),
+
+/***/ "./src/encryption/encrypt.ts":
+/*!***********************************!*\
+  !*** ./src/encryption/encrypt.ts ***!
+  \***********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.applyDecrypt = exports.applyEncrypt = void 0;
+var crypto_js_1 = __importDefault(__webpack_require__(/*! crypto-js */ "crypto-js"));
+// Encrypt
+var applyEncrypt = function (text, secret) {
+    return crypto_js_1.default.AES.encrypt(text, secret).toString();
+};
+exports.applyEncrypt = applyEncrypt;
+// Decrypt
+var applyDecrypt = function (cipherText, secret) {
+    var bytes = crypto_js_1.default.AES.decrypt(cipherText, secret);
+    return bytes.toString(crypto_js_1.default.enc.Utf8);
+};
+exports.applyDecrypt = applyDecrypt;
+
+
+/***/ }),
+
+/***/ "./src/exceptions/exceptions.ts":
+/*!**************************************!*\
+  !*** ./src/exceptions/exceptions.ts ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var exceptions = {
+    nullSecretKey: 'NO SECRET KEY DEFINED. YOU NEED TO DEFINED A SECRET KEY IN ORDER TO SUCCESSFULLY ENCRYPT OR DECRYPT DATA.',
+    nullKey: 'NO STORAGE ITEM KEY DEFINED. UNABLE TO IDENTIFY STORAGE ITEM TO RETRIEVE',
+    retrievingUndecryptedItem: 'TRYING TO RETRIEVE ENCRYPTED ITEM WITH INVALD OR UNSPECIFIED DECRYPTION CODE',
+    indexedDB: {
+        unsupported: 'THIS BROWSER DOES NOT YET SUPPORT THE INDEXEDDB SPECIFICATION OR IT IS IMPROPERLY SPECIFED'
+    }
+};
+exports.default = exceptions;
+
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+
+/* eslint-disable @typescript-eslint/no-var-requires */
+var Cella = __webpack_require__(/*! ./cella */ "./src/cella.ts").default;
+module.exports = Cella;
 
 
 /***/ }),
